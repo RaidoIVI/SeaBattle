@@ -3,7 +3,7 @@ public class Cell
 {
      public int X     { get; private set ; }
      public int Y     { get; private set ; }
-     public int Value { get; protected set ; }
+     public int Value { get; private set ; }
 
 
     public Cell()
@@ -20,6 +20,11 @@ public class Cell
         Value = value;
     }
 
+    internal void SetValue (int value) 
+    {
+        Value = value;
+    }
+
     public void Draft(char symbol) 
     {
         Output.CPrint(X, Y, symbol);    
@@ -28,6 +33,7 @@ public class Cell
     public void Draft() 
     {
         Output.CPrint(X,Y,Value);
+        
     }
 
 }

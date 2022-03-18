@@ -4,11 +4,11 @@
 
 
 
-public class Board : Cell
+public class Board
 {
     private int SizeX;
     private int SizeY;
-    internal List<Cell> Boards { get; set; }
+    public List<Cell> Boards { get; private set; }
     internal errors Errors = errors.NoErrors;
     
 
@@ -26,25 +26,11 @@ public class Board : Cell
         }
         
     }
-    private  Board GetCell(int X, int Y)
-    {
-        var tmp = Boards.Find (x => x.X == X && x.Y == Y);
-        if (tmp == null) { Errors = errors.Null;}
-        return tmp;
-        
-    }
+
+
+   
     
-    public bool SetValue (int X, int Y, int Value) 
-    {
-        GetCell(X, Y);
-        if (Errors == errors.Null) { Errors = errors.NoErrors; return false; } 
-        Board.GetCell(X, Y).Value(Boards) = Value ;
-        
-        
-        
-        
-        return true;
-    }
+   
 
 
 
