@@ -12,7 +12,7 @@ public class Board
     internal errors Errors = errors.NoErrors;
     
 
-    public Board (int sizeX, int sizeY, int value = 0) 
+    public Board (int sizeX, int sizeY, CellStatus value = CellStatus.Empty ) 
     {
         SizeX = sizeX;
         SizeY = sizeY;

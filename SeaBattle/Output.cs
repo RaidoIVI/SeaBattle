@@ -15,7 +15,7 @@
     //    //Console.CursorVisible = false;
     }
 
-    static public void CPrint(int x, int y, int value, ConsoleColor fontColor = ConsoleColor.Gray, ConsoleColor backColor = ConsoleColor.Black)
+    static public void CPrint(int x, int y, CellStatus value, ConsoleColor fontColor = ConsoleColor.Gray, ConsoleColor backColor = ConsoleColor.Black)
         {
         Console.ForegroundColor = fontColor;
         Console.BackgroundColor = backColor;
