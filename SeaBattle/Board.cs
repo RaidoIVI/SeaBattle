@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-public class Board
+﻿public class Board
 {
     private int _sizeX;
     private int _sizeY;
@@ -42,16 +36,28 @@ public class Board
                 var x = ship.GetX(i);
                 var y = ship.GetY(i);
                 tmp = _boards.Find( c => c.X == x && c.Y == y )  ;
-                tmp.SetValue(CellStatus.Ship);
+                if (tmp != null) 
+                {
+                    tmp.SetValue(CellStatus.Ship); 
+                }
+                else
+                {
+                    return false;
+                }                
             }
-        }
-
-
-
-        _boards.Add(new Cell());
+        }  
+        CollisionBoardReset();
         return true;
     } 
-    
+
+    public void Draft()
+    {
+        foreach (var cell in _boards)
+        {
+            cell.Draft();
+        }
+    }
+  
     private bool Collision (int X, int Y) 
     {
         return _boards.Contains(new Cell(X,Y,CellStatus.Empty));       
@@ -61,11 +67,39 @@ public class Board
     {
         for (int i = 0; i < ship.Leght  ;i++)
         {
-            if (!Collision (ship.GetX(i),ship.GetY(i))) 
+            if (Collision (ship.GetX(i),ship.GetY(i))) 
             {
                 return false;
             }
         }
         return true;
+    }
+    private void CollisionCellReset(Cell cell)
+    {
+        if (cell.Value == CellStatus.Ship)
+        {
+            for (int i=-1; i<2; i++)
+            {
+                for (int j=-1; j<2; j++)
+                {
+                    var tmp = _boards.Find(c => c.X == cell.X+i && c.Y == cell.Y+j);
+                    if (tmp != null)
+                    {
+                        if (tmp.Value != CellStatus.Ship)
+                        {
+                            tmp.Value = CellStatus.Forbidden;
+                        }
+                    }
+                }
+            }
+        }        
+    }
+
+    private void CollisionBoardReset ()
+    {
+        foreach (var cell in _boards)
+        {
+            CollisionCellReset (cell);
+        }
     }
 }

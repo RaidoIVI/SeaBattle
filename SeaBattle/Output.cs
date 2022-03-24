@@ -21,7 +21,7 @@
         Console.BackgroundColor = backColor;
         Console.CursorLeft = x;
         Console.CursorTop = y;
-        Console.Write (value);
+        Console.Write ( Convert.ToInt32( value));
         Console.ResetColor();
         }
     static public void CPrint(int x, int y, char value, ConsoleColor fontColor = ConsoleColor.Gray, ConsoleColor backColor = ConsoleColor.Black)

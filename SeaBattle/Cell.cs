@@ -4,7 +4,7 @@ public class Cell // : ICoordinates
 {
     public int X { get; }
     public int Y { get; }
-    public CellStatus Value { get; private set ; }
+    public CellStatus Value { get;  set ; }
 
 
     public Cell()
