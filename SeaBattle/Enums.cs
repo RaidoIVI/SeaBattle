@@ -1,6 +1,6 @@
 ﻿
 
-public enum errors
+public enum Errors
 {
     NoErrors,
     Null,
@@ -15,5 +15,6 @@ public enum CellStatus
 {
     Empty,
     Ship,
+    Forbidden,
 
 }

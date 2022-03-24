@@ -1,27 +1,55 @@
 ﻿
-    internal class Ship : Cell
+    internal class Ship
 
     {
-    int X;
-    int Y;
-    int Leght;
-    bool Live;
-    public List<Cell> Ships { get; private set; }
+    private int [,] _coordinats { get; }
+    public int Leght { get; }
+    private ShipLocate ShipLocate;
+    public bool Live { get; private set; }
 
     public Ship (int x, int y, int leght, ShipLocate shipLocate ) 
     {
-        for (int i=0; i<leght; i++) 
+        Leght = leght;
+        ShipLocate = shipLocate;
+        Live = true;
+        _coordinats = new int[leght,2];
+
+        for (int i = 0; i < leght; i++)
         {
             if (shipLocate == ShipLocate.Horizontal)
             {
-                Ships.Add (new Cell (x+i, y, CellStatus.Ship));
+                _coordinats[i , 0] = x + i;
+                _coordinats[i , 1] = y;
             }
             else
             {
-                Ships.Add (new Cell (x, y+i, CellStatus.Ship));
+                _coordinats[i, 0] = x;
+                _coordinats[i, 1] = y + i;                
             }
         }
     }
-
+    public int GetX (int pos)
+    {
+        if (pos > Leght -1) 
+        {
+            return -1;
+        } 
+        else 
+        {
+            return _coordinats[pos, 0];
+        }
+        
     }
+    public int GetY(int pos)
+    {
+        if (pos > Leght - 1)
+        {
+            return -1;
+        }
+        else
+        {
+            return _coordinats[pos, 1];
+        }
+    }
+}
 

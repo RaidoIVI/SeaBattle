@@ -6,32 +6,66 @@
 
 public class Board
 {
-    private int SizeX;
-    private int SizeY;
-    public List<Cell> Boards { get; private set; }
-    internal errors Errors = errors.NoErrors;
-    
+    private int _sizeX;
+    private int _sizeY;
+    private readonly List<Cell> _boards;
+    internal Errors errors = Errors.NoErrors;
 
-    public Board (int sizeX, int sizeY, CellStatus value = CellStatus.Empty ) 
+
+    public Board(int sizeX, int sizeY)
     {
-        SizeX = sizeX;
-        SizeY = sizeY;
-        Boards = new List<Cell> (sizeX*sizeY);
-        for (int i = 0; i < SizeX; i++) 
+        _sizeX = sizeX;
+        _sizeY = sizeY;
+        _boards = new List<Cell>(sizeX * sizeY);
+        BoardInit(sizeX, sizeY);
+    }
+
+    private void BoardInit (int SizeX, int SizeY ) 
+    {
+        _boards.Clear();
+        for (int i = 0; i < SizeX; i++)
         {
             for (int j = 0; j < SizeY; j++)
             {
-                Boards.Add(new Cell(i, j, value));
+                _boards.Add(new Cell(i, j));
             }
         }
+    }
         
+    internal bool ShipAdd (Ship ship)  
+    {
+        if ( Collision(ship) ) 
+        {
+            for (int i = 0; i < ship.Leght ; i++)
+            {
+                var tmp = new Cell();
+                var x = ship.GetX(i);
+                var y = ship.GetY(i);
+                tmp = _boards.Find( c => c.X == x && c.Y == y )  ;
+                tmp.SetValue(CellStatus.Ship);
+            }
+        }
+
+
+
+        _boards.Add(new Cell());
+        return true;
+    } 
+    
+    private bool Collision (int X, int Y) 
+    {
+        return _boards.Contains(new Cell(X,Y,CellStatus.Empty));       
     }
 
-
-   
-    
-   
-
-
-
+    private bool Collision (Ship ship) 
+    {
+        for (int i = 0; i < ship.Leght  ;i++)
+        {
+            if (!Collision (ship.GetX(i),ship.GetY(i))) 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

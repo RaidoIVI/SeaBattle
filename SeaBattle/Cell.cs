@@ -1,16 +1,22 @@
-﻿
-public class Cell
+﻿//using SeaBattle;
+
+public class Cell // : ICoordinates
 {
-     public int X { get; private set ; }
-     public int Y { get; private set ; }
-     public CellStatus 
-            Value { get; private set ; }
+    public int X { get; }
+    public int Y { get; }
+    public CellStatus Value { get; private set ; }
 
 
     public Cell()
     {
         X = 0;
         Y = 0;
+        Value = CellStatus.Empty;
+    }
+    public Cell (int x, int y) 
+    {
+        X = x;
+        Y = y; 
         Value = CellStatus.Empty;
     }
 
@@ -25,7 +31,7 @@ public class Cell
     {
         Value = value;
     }
-
+        
     public void Draft(char symbol) 
     {
         Output.CPrint(X, Y, symbol);    
