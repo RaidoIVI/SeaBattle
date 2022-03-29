@@ -1,29 +1,25 @@
-﻿
+﻿using System.ComponentModel;
 
 
 
 
 
- static class  Output
+static class  Output
 {
-    static public void CSet (int x = 0, int y = 0 )
+    static public void CReset (int x = 0, int y = 0 )
     {
         Console.Clear();
-    //    //Console.CursorSize = 100;
-    //    Console.SetWindowSize (x, y);
-    //    Console.SetBufferSize (x, y);
-    //    //Console.CursorVisible = false;
     }
 
-    static public void CPrint(int x, int y, CellStatus value, ConsoleColor fontColor = ConsoleColor.Gray, ConsoleColor backColor = ConsoleColor.Black)
+    static public void CPrint(int x, int y, CellStatus value)
         {
-        Console.ForegroundColor = fontColor;
-        Console.BackgroundColor = backColor;
+        SetColor (value);
         Console.CursorLeft = x;
         Console.CursorTop = y;
-        Console.Write ( Convert.ToInt32( value));
+        Console.Write ( Convert.ToChar ( GetDescripton (value  )));
         Console.ResetColor();
         }
+    
     static public void CPrint(int x, int y, char value, ConsoleColor fontColor = ConsoleColor.Gray, ConsoleColor backColor = ConsoleColor.Black)
     {
         Console.ForegroundColor = fontColor;
@@ -33,5 +29,22 @@
         Console.Write(value);
         Console.ResetColor();
     }
-
+    static private string GetDescripton (Enum value)
+    {
+        var field = value.GetType().GetField(value.ToString());
+        var description = field?.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+        if (description != null)
+        {
+            return description.First().Description;
+        }
+        return value.ToString();
+    }    
+    static private void SetColor (CellStatus value)
+    {
+        if (value == CellStatus.Ship)
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Red;
+        }
+    }
 }

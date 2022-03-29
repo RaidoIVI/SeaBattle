@@ -4,19 +4,20 @@
     {
     private int [,] _coordinats { get; }
     public int Leght { get; }
-    private ShipLocate ShipLocate;
+    private ShipLocate _shipLocate;
     public bool Live { get; private set; }
+
 
     public Ship (int x, int y, int leght, ShipLocate shipLocate ) 
     {
         Leght = leght;
-        ShipLocate = shipLocate;
+        _shipLocate = shipLocate;
         Live = true;
         _coordinats = new int[leght,2];
 
         for (int i = 0; i < leght; i++)
         {
-            if (shipLocate == ShipLocate.Horizontal)
+            if (_shipLocate == ShipLocate.Horizontal)
             {
                 _coordinats[i , 0] = x + i;
                 _coordinats[i , 1] = y;

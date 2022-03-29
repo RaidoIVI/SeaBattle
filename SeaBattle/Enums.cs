@@ -1,9 +1,10 @@
-﻿
+﻿using System.ComponentModel;
 
 public enum Errors
 {
     NoErrors,
     Null,
+
 }
 
 public enum ShipLocate
@@ -13,8 +14,13 @@ public enum ShipLocate
 }
 public enum CellStatus
 {
+    [Description("O")]
+    
     Empty,
+    [Description("X")]
     Ship,
+    [Description("O")]
     Forbidden,
 
 }
+
