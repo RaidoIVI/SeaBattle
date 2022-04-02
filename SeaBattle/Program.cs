@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using SeaBattle;
+using System.ComponentModel;
+
+
+Rulls Rull = new Rulls();
+
+var a = new RandomBoard(Rull);
+a.Boards.Draft();
+
+
+
+
+
+
+Console.ReadKey();
