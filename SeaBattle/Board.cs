@@ -16,7 +16,7 @@ public class Board
         BoardInit(sizeX, sizeY);
     }
 
-    private void BoardInit (int sizeX, int sizeY ) 
+    private void BoardInit(int sizeX, int sizeY)
     {
         _boards.Clear();
         for (int i = 0; i < sizeX; i++)
@@ -27,25 +27,25 @@ public class Board
             }
         }
     }
-        
-    internal bool ShipAdd (Ship ship,Rulls rulls)  
+
+    internal bool ShipAdd(Ship ship, Rulls rulls)
     {
-        if ( !Collision(ship) ) 
+        if (!Collision(ship))
         {
-            for (int i = 0; i < ship.Leght ; i++)
+            for (int i = 0; i < ship.Leght; i++)
             {
                 var tmp = new Cell();
                 var x = ship.GetX(i);
                 var y = ship.GetY(i);
-                tmp = _boards.Find( c => c.X == x && c.Y == y )  ;
-                if (tmp != null) 
+                tmp = _boards.Find(c => c.X == x && c.Y == y);
+                if (tmp != null)
                 {
-                    tmp.SetValue(CellStatus.Ship); 
+                    tmp.SetValue(CellStatus.Ship);
                 }
                 else
                 {
                     return false;
-                }                
+                }
             }
         }
         else
@@ -68,9 +68,9 @@ public class Board
         return false;
     }
 
-    private bool Collision (int x, int y) 
+    private bool Collision(int x, int y)
     {
-        var tmp = _boards.Find(c => c.X == x && c.Y == y);    
+        var tmp = _boards.Find(c => c.X == x && c.Y == y);
         if (tmp == null)
         {
             return true;
@@ -87,16 +87,16 @@ public class Board
             }
         }
     }
-    
-    private void CollisionCellReset(Cell cell,int collisionRadius)
+
+    private void CollisionCellReset(Cell cell, int collisionRadius)
     {
         if (cell.Value == CellStatus.Ship)
         {
-            for (int i=-collisionRadius; i<collisionRadius+1; i++)
+            for (int i = -collisionRadius; i < collisionRadius + 1; i++)
             {
-                for (int j=-collisionRadius; j<collisionRadius+1; j++)
+                for (int j = -collisionRadius; j < collisionRadius + 1; j++)
                 {
-                    var tmp = _boards.Find(c => c.X == cell.X+i && c.Y == cell.Y+j);
+                    var tmp = _boards.Find(c => c.X == cell.X + i && c.Y == cell.Y + j);
                     if (tmp != null)
                     {
                         if (tmp.Value == CellStatus.Empty)
@@ -106,14 +106,14 @@ public class Board
                     }
                 }
             }
-        }        
+        }
     }
 
-    private void CollisionBoardReset (int collisionRadius)
+    private void CollisionBoardReset(int collisionRadius)
     {
         foreach (var cell in _boards)
         {
-            CollisionCellReset (cell, collisionRadius);
+            CollisionCellReset(cell, collisionRadius);
         }
     }
 
