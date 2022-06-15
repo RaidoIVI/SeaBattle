@@ -1,11 +1,11 @@
 ﻿
 
 
-public class Cell 
+public class Cell
 {
     public int X { get; }
     public int Y { get; }
-    public CellStatus Value { get;  set ; }
+    public CellStatus Value { get; set; }
     private Char _cellSymbol;
 
 
@@ -16,43 +16,43 @@ public class Cell
         Value = CellStatus.Empty;
     }
 
-    public Cell (int x, int y) 
+    public Cell(int x, int y)
     {
         X = x;
-        Y = y; 
+        Y = y;
         Value = CellStatus.Empty;
     }
 
-    public Cell(int x, int y, CellStatus value )
+    public Cell(int x, int y, CellStatus value)
     {
         X = x;
         Y = y;
         Value = value;
     }
 
-    internal void SetValue (CellStatus value) 
+    internal void SetValue(CellStatus value)
     {
         Value = value;
     }
-        
-    public void Draft(char symbol) 
+
+    public void Draft(char symbol)
     {
-        Output.CPrint(X, Y, symbol);    
+        Output.CPrint(X, Y, symbol);
     }
 
-    public void Draft() 
+    public void Draft()
     {
-        Output.CPrint(X,Y,Value);        
+        Output.CPrint(X, Y, Value);
     }
 
-    public void Draft (int x, int y)
+    public void Draft(int x, int y)
     {
-        Output.CPrint(X+x,Y+y,Value);
+        Output.CPrint(X + x, Y + y, Value);
     }
 
-    public void Draft (int x, int y, char symbol)
+    public void Draft(int x, int y, char symbol)
     {
-        Output.CPrint(X+x, Y+y, symbol);
+        Output.CPrint(X + x, Y + y, symbol);
     }
-  
+
 }

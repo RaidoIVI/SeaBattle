@@ -13,16 +13,16 @@ namespace SeaBattle
         private const int _collisionRadius = 1;
         private const int _shipTypeNumber = 4;
 
-        
-        
-        public int GetShipNumber(int numberOfType) 
+
+
+        public int GetShipNumber(int numberOfType)
         {
             if (numberOfType <= _shipTypeNumber && numberOfType > 0)
             {
                 return numberOfType;
             }
             return 0;
-            
+
         }
 
         public int GetShipLeght(int numberOfType)
@@ -36,7 +36,7 @@ namespace SeaBattle
 
         public int GetShipTypeNumber()
         {
-            return _shipTypeNumber; 
+            return _shipTypeNumber;
         }
         public int GetCollisionRadius()
         {

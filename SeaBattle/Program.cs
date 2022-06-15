@@ -1,5 +1,4 @@
 ﻿using SeaBattle;
-using System.ComponentModel;
 
 
 Rulls Rull = new Rulls();

@@ -15,7 +15,7 @@ public enum ShipLocate
 public enum CellStatus
 {
     [Description("O")]
-    
+
     Empty,
     [Description("X")]
     Ship,
